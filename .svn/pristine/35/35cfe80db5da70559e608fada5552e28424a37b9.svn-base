@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="manager" namespace="/manager" extends="struts-default,json-default">
+		<action name="manager_*" method="{1}" class="managerAction">
+			<result name="login" type="redirect">/manager.jsp</result>
+			<result name="customer" type="redirectAction">manager_queryCustomer</result>
+			<result name="customers">/customer.jsp</result>
+			<result name="update">/updateCustomer.jsp</result>
+			<result name="ajax" type="json"></result>
+		</action>
+	</package>
+</struts>    

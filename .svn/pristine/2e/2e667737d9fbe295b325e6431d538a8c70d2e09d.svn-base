@@ -1,0 +1,65 @@
+package com.chinasoft.customer;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import session.HibernateSessionFactory;
+import entity.Customer;
+
+public class CustomerService {
+
+	private HibernateSessionFactory factory;
+
+	private Session session;
+
+	public void setFactory(HibernateSessionFactory factory) {
+		this.factory = factory;
+	}
+
+	public Transaction tx;
+
+	public void insertCustomer(Customer customer) {
+		this.session = this.factory.getSession();
+		this.tx = session.beginTransaction();
+		session.save(customer);
+		tx.commit();
+	}
+
+	public Object login(Customer customer) {
+		this.session = this.factory.getSession();
+		Query query = session.createQuery("from Customer c where c.cname='"
+				+ customer.getCname() + "' and c.password='"
+				+ customer.getPassword() + "'");
+		return query.uniqueResult();
+	}
+
+	public int usernameCheck(Customer customer) {
+		this.session = factory.getSession();
+		Query query = session.createQuery("from Customer where cname='"
+				+ customer.getCname() + "'");
+		List list = query.list();
+		int result = list.size();
+		return result;
+	}
+
+	public Object password(Customer customer) {
+		this.session = factory.getSession();
+		Query query = session.createQuery("from Customer c where c.phone ='"
+				+ customer.getPhone() + "' and c.cname='" + customer.getCname()
+				+ "'");
+		return query.uniqueResult();
+	}
+
+	public int phoneCheck(Customer customer) {
+		this.session = factory.getSession();
+		Query query = session.createQuery("from Customer where phone='"
+				+ customer.getPhone() + "'");
+		List list = query.list();
+		int result = list.size();
+		return result;
+	}
+
+}

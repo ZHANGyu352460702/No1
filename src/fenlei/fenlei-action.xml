@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="fenlei" namespace="/fenlei" extends="struts-default">
+		<action name="fenlei_*" method="{1}" class="FenleiAction">
+			<result name="0">/Nanzhuang.jsp</result>
+			<result name="1">/Nanzhuang.jsp</result>
+			<result name="2">/Nanzhuang.jsp</result>
+			<result name="3">/Nanzhuang.jsp</result>
+			<result name="4">/Nanzhuang.jsp</result>
+			<result name="5">/Nanzhuang.jsp</result>
+			<result name="6">/Nanzhuang.jsp</result>
+			<result name="7">/Nanzhuang.jsp</result>
+			<result name="8">/Nanzhuang.jsp</result>
+			<result name="9">/Nanzhuang.jsp</result>
+			<result name="10">/Nanzhuang.jsp</result>	
+		</action>
+	</package>
+</struts>    

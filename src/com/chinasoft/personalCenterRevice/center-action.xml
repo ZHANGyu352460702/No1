@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+      <!--  /personalCenterRevice是包名，也是访问的路径。action下的name是localhost：8080/num1/personalCenterRevice/center.action -->
+       <package name="personalCenterRevice" namespace="/personalCenterRevice" extends="struts-default">
+		<action name="center_*" method="{1}" class="centerAction">
+			<result name="changeinfo" >/changeinfo.jsp</result>
+			 <result name="personalCenter" type="redirect">/personalCenter.jsp</result>
+			  	<result  >/change.jsp</result>		
+			<!-- <result name="personalCenter"  type="redirectAction">center_queryOne</result> -->
+			</action>
+	  </package>
+</struts>    

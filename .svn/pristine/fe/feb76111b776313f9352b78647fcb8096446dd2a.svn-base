@@ -1,0 +1,67 @@
+package products;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import org.hibernate.Transaction;
+
+import session.HibernateSessionFactory;
+
+
+public class ProductsService {
+	
+	/*private SessionFactory factory;*/
+	private Session session;
+	private Transaction tx;
+
+	/*public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}*/
+	
+	public List queryProducts() {
+		this.session =HibernateSessionFactory.getSession();
+		Query query = session.createQuery("from Products");
+		List list = query.list(); 
+		return list;
+	}
+	
+	public int count(String search) {
+		if(search==null){
+			search="";
+		}
+		this.session =HibernateSessionFactory.getSession();
+		Query query = session.createQuery("from Products where pname like ?");
+		query.setString(0, "%"+search+"%");
+		
+		List list = query.list(); 
+		int count = list.size();
+		System.out.println(count);
+		return count;
+	}
+	
+	
+	public List queryFenye(String page,String current,String search) {
+		
+		if(current==null){
+			current="0";
+		}
+		if(search==null){
+			search="";
+		}
+		int pageCount = Integer.valueOf(page);
+		int currentPage = Integer.valueOf(current)-1;
+		this.session =HibernateSessionFactory.getSession();
+		Query query=this.session.createQuery("from Products where pname like ?");
+		query.setString(0, "%"+search+"%");
+		query.setFirstResult(pageCount*currentPage);
+		query.setMaxResults(pageCount);
+		List list=query.list();
+		return list;
+	}
+	
+	
+	
+
+}

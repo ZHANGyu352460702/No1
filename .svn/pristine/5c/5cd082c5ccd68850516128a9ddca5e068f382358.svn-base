@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="nanzhuang" namespace="/nanzhuang" extends="struts-default">
+		<action name="nanzhuang_*" method="{1}" class="NanzhuangAction">
+			<result name="chun">/Nanzhuang.jsp</result>
+			<result name="xia">/Nanzhuang.jsp</result>
+			<result name="qiu">/Nanzhuang.jsp</result>
+			<result name="dong">/Nanzhuang.jsp</result>	
+		</action>
+	</package>
+</struts>    

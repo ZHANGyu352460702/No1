@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="products" namespace="/products" extends="struts-default">
+		<action name="products_*" method="{1}" class="productAction">
+			<result name="Liebiao">/Liebiao.jsp</result>	
+		    <result name="Shouye" type="redirect">/Shouye.jsp</result>
+		</action>
+	</package>
+</struts>    

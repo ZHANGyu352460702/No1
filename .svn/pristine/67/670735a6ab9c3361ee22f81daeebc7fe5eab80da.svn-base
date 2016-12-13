@@ -1,0 +1,31 @@
+package products;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ProductsAction extends ActionSupport{
+
+	private List products;
+   
+	public List getProducts() {
+		return products;
+	}
+
+	public void setProducts(List products) {
+		this.products = products;
+	}
+	
+	private ProductsService service;
+
+	public void setService(ProductsService service) {
+		this.service = service;
+	}
+	
+	public String queryProduct() throws Exception{
+		this.products=(List) this.service.queryProducts();
+		return "Liebiao";		
+	}
+}

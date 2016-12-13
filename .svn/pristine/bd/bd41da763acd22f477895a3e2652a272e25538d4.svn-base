@@ -1,0 +1,30 @@
+package products;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import org.hibernate.Transaction;
+
+import session.HibernateSessionFactory;
+
+
+public class ProductsService {
+	
+	/*private SessionFactory factory;*/
+	private Session session;
+	private Transaction tx;
+
+	/*public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}*/
+	
+	public List queryProducts() {
+		this.session =HibernateSessionFactory.getSession();
+		Query query = session.createQuery("from Products");
+		List list = query.list(); 
+		return list;
+	}
+
+}

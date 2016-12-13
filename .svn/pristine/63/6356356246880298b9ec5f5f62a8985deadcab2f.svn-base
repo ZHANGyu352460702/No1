@@ -1,0 +1,85 @@
+package com.chinasoft.customer;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import entity.Customer;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CustomerAction extends ActionSupport implements SessionAware {
+	public CustomerService service;
+
+	public void setService(CustomerService service) {
+		this.service = service;
+	}
+
+	public Map session;
+
+	public Customer customer;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+		
+	public int isUsed;
+	
+	
+	public int getIsUsed() {
+		return isUsed;
+	}
+
+	public void setIsUsed(int isUsed) {
+		this.isUsed = isUsed;
+	}
+
+	public String insertCustomer() {
+		service.insertCustomer(customer);
+		return "login";
+	}
+
+	public String login() {
+		Customer c = (Customer) service.login(this.customer);
+		if (c != null) {
+			session.put("userInfo", c);
+			return "index";
+		} else {
+			return "login";
+		}
+	}
+
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		this.session = arg0;
+	}
+	
+	public String loginout(){
+		this.session.remove("userInfo");
+		return "login";
+	}
+	
+	public String usernameCheck(){
+		this.isUsed=service.usernameCheck(this.customer);
+		return "ajax";
+	}
+	
+	public String password(){
+		Customer c = (Customer) service.password(this.customer);
+		if (c != null) {
+			session.put("userInfo1", c);
+			return "query";
+		} else {
+			return "query";
+		}
+	}
+	
+	public String phoneCheck(){
+		this.isUsed=service.phoneCheck(this.customer);
+		return "ajax";
+	}
+	
+}
